@@ -1,0 +1,3 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.mangmangbang.springboot.bootstrap.context.AfterHelloWorldApplicationContextInitalizer,\
+com.mangmangbang.springboot.bootstrap.context.HelloWorldApplicationContextInitalizer
