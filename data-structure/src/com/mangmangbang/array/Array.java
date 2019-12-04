@@ -1,7 +1,5 @@
 package com.mangmangbang.array;
 
-import java.security.SignatureException;
-
 /**
  * created by zhangjingchuan on 2019/12/3
  */
@@ -13,7 +11,7 @@ public class Array {
     /**
      * 无参的构造函数，默认数组的容量capacity=10
      */
-    private Array(){
+    public Array(){
         this(10);
     }
 
@@ -21,7 +19,7 @@ public class Array {
      * 构造函数，传入数组的容量capacity构造Array
      * @param capacity
      */
-    private Array(int capacity){
+    public Array(int capacity){
         this.data = new int[capacity];
         size = 0;
     }
@@ -72,7 +70,7 @@ public class Array {
             throw new IllegalArgumentException("AddLast failed. Require index >=0 and index <=size");
         }
 
-        for(int i = size - 1;i >= size ; i--){
+        for(int i = size - 1;i >= index ; i--){
             data[i+1] = data[i];
         }
 
@@ -86,6 +84,49 @@ public class Array {
      */
     public void addFirst(int e){
         this.add(0,e);
+    }
+
+    /**
+     * 获取index位置的元素
+     * @param index
+     * @return
+     */
+    public int get(int index){
+
+        if(index<0||index>=size){
+            throw new IllegalArgumentException("Get failed. Index is illegal.");
+        }
+        return data[index];
+    }
+
+    /**
+     * 修改index索引位置的元素为e
+     * @param index
+     * @param e
+     */
+    public void set(int index, int e){
+
+        if(index<0||index>=size){
+            throw new IllegalArgumentException("Get failed. Index is illegal.");
+        }
+
+        data[index] = e;
+    }
+
+    @Override
+    public String toString(){
+        StringBuffer res = new StringBuffer();
+        res.append(String.format("Array : size = %d , capacity = %d\n",size,data.length));
+        res.append("[");
+        for(int i=0;i<size;i++){
+            res.append(data[i]);
+            if(i!=size-1){
+                res.append(", ");
+            }
+        }
+        res.append("]");
+
+        return res.toString();
     }
 
 }
