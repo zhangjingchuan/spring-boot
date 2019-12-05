@@ -94,9 +94,14 @@ public class Array<E>  {
         //创建一个新数组
         E [] newData = (E[])new Object[newCapacity];
         //将原数组中的值复制给新数组
-        Stream.iterate(0,i->i+1).limit(size).forEach(i -> {
+//        Stream.iterate(0,i->i+1).limit(size).forEach(i -> {
+//            newData[i]=data[i];
+//        });
+//        简单循环时for循环比lambda性能更好
+
+        for(int i=0;i<size;i++){
             newData[i]=data[i];
-        });
+        }
         //重定向data的指向
         data = newData;
 
@@ -153,13 +158,22 @@ public class Array<E>  {
      * @return
      */
     public int findLast(E e){
-        AtomicInteger index = new AtomicInteger(-1);
-        Stream.iterate(0, i -> i + 1).limit(size).forEach(i -> {
+//        AtomicInteger index = new AtomicInteger(-1);
+//        Stream.iterate(0, i -> i + 1).limit(size).forEach(i -> {
+//            if(data[i].equals(e)){
+//                index.set(i);
+//            }
+//        });
+//        return index.get();
+
+        int index = -1;
+        for(int i=0;i<size;i++){
             if(data[i].equals(e)){
-                index.set(i);
+                index = i;
             }
-        });
-        return index.get();
+        }
+
+        return index;
     }
 
     /**
@@ -186,11 +200,17 @@ public class Array<E>  {
      */
     public Integer[] findAll(E e){
         List<Integer> list = new LinkedList<>();
-        Stream.iterate(0, i -> i + 1).limit(size).forEach(i -> {
+//        Stream.iterate(0, i -> i + 1).limit(size).forEach(i -> {
+//            if(data[i].equals(e)){
+//                list.add(i);
+//            }
+//        });
+
+        for(int i=0;i<size;i++){
             if(data[i].equals(e)){
                 list.add(i);
             }
-        });
+        }
         Integer[] indexs = list.toArray(new Integer[list.size()]);
         return indexs;
     }
@@ -209,13 +229,13 @@ public class Array<E>  {
 
         E result = data[index];
 
-//        for(int i=index+1;i<size;i++){
-//            data[i-1]=data[i];
-//        }
-
-        Stream.iterate(index+1,i->i+1).limit(size-1-index).forEach(i->{
+        for(int i=index+1;i<size;i++){
             data[i-1]=data[i];
-        });
+        }
+
+//        Stream.iterate(index+1,i->i+1).limit(size-1-index).forEach(i->{
+//            data[i-1]=data[i];
+//        });
 
         size --;
         //将数组中的引用制空
