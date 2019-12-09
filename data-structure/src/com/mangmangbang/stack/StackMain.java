@@ -13,6 +13,6 @@ public class StackMain {
         System.out.println(stack);
 
 
-        System.out.println("helloßß");
+        System.out.println("hello world");
     }
 }
