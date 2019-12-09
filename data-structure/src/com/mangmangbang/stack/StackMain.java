@@ -11,5 +11,8 @@ public class StackMain {
 
         stack.pop();
         System.out.println(stack);
+
+
+        System.out.println("helloßß");
     }
 }
