@@ -1,5 +1,6 @@
 package com.mangmangbang.stack;
 
+
 public class StackMain {
 
     public static void main(String [] args){
@@ -9,10 +10,10 @@ public class StackMain {
             System.out.println(stack);
         }
 
+
         stack.pop();
         System.out.println(stack);
 
 
-        System.out.println("hello world");
     }
 }
