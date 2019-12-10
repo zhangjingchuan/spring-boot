@@ -1,11 +1,13 @@
 package com.mangmangbang.stack;
 
-
-public class StackMain {
+/**
+ * created by zhangjingchuan on 2019/12/10
+ */
+public class LinkedListStackMain {
 
     public static void main(String [] args){
-        ArrayStack<Integer> stack = new ArrayStack<>();
 
+        Stack<Integer> stack = new LinkedListStack<>();
 
 
         for(int i =0;i<5;i++){
