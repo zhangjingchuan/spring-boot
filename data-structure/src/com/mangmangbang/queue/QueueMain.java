@@ -1,5 +1,7 @@
 package com.mangmangbang.queue;
 
+import java.util.LinkedList;
+
 public class QueueMain {
 
     public static void main(String [] args){
@@ -14,5 +16,7 @@ public class QueueMain {
                 System.out.println(queue);
             }
         }
+
+
     }
 }
