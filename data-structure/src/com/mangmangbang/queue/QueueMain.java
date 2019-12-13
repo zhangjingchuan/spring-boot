@@ -1,6 +1,5 @@
 package com.mangmangbang.queue;
-
-import java.util.LinkedList;
+ 
 
 public class QueueMain {
 
