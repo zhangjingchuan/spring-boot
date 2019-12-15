@@ -1,5 +1,9 @@
 package com.mangmangbang.bst;
 
+import jdk.nashorn.internal.ir.WhileNode;
+
+import java.util.Stack;
+
 /**
  * created by zhangjingchuan on 2019/12/13
  *
@@ -120,6 +124,86 @@ public class BST<E extends Comparable<E>> {
         preOrder(node.right);
     }
 
+    /**
+     * 二分搜索树的非递归前序遍历
+     */
+    public void preOrderNR(){
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+
+            if(cur.right!=null) {
+                stack.push(cur.right);
+            }
+            if(cur.left!=null) {
+                stack.push(cur.left);
+            }
+        }
+    }
+
+    /**
+     * 二分搜索树的中序遍历
+     */
+    public void inOrder(){
+        inOrder(root);
+    }
+
+    /**
+     * 中序遍历以node为根的二分搜索树，递归算法
+     * @param node
+     */
+    private void inOrder(Node node){
+        if(node == null){
+            return ;
+        }
+
+        inOrder(node.left);
+        //访问该节点
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+    public void inOrderNR(){
+        Stack<Node> stack = new Stack<>();
+        Node node = root;
+        while (node!=null){
+            if (node.right!= null){
+                stack.push(node.right);
+                node = node.right;
+            }else {
+                stack.push(node);
+
+                if(node.left!=null){
+                    stack.push(node.left);
+                    node = node.left;
+                }
+            }
+        }
+
+        while (!stack.isEmpty()){
+            System.out.println(stack.pop().e);
+        }
+    }
+
+    /**
+     * 二分搜索树的后序遍历
+     */
+    public void postOrder(){
+        this.postOrder(root);
+    }
+
+    private void postOrder(Node node){
+        if(node == null) {
+            return;
+        }
+
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
@@ -147,7 +231,7 @@ public class BST<E extends Comparable<E>> {
     }
 
     private String generateDepthString(int depth) {
-        StringBuilder res = new StringBuilder();
+        StringBuilder res =  new StringBuilder();
         for(int i=0;i<depth;i++){
             res.append("--");
         }
