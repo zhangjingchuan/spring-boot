@@ -165,28 +165,6 @@ public class BST<E extends Comparable<E>> {
         inOrder(node.right);
     }
 
-    public void inOrderNR(){
-        Stack<Node> stack = new Stack<>();
-        Node node = root;
-        while (node!=null){
-            if (node.right!= null){
-                stack.push(node.right);
-                node = node.right;
-            }else {
-                stack.push(node);
-
-                if(node.left!=null){
-                    stack.push(node.left);
-                    node = node.left;
-                }
-            }
-        }
-
-        while (!stack.isEmpty()){
-            System.out.println(stack.pop().e);
-        }
-    }
-
     /**
      * 二分搜索树的后序遍历
      */
