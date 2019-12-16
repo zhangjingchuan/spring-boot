@@ -1,5 +1,6 @@
 package com.mangmangbang.bst;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import jdk.nashorn.internal.ir.WhileNode;
 
 import java.util.Stack;
@@ -165,6 +166,18 @@ public class BST<E extends Comparable<E>> {
         inOrder(node.right);
     }
 
+    public void inOrderNR(){
+
+        Stack<Node> loopStack = new Stack<>();
+
+        Stack<Node> tempStack = new Stack<>();
+
+        Node node = root;
+        while (node!=null){
+
+        }
+
+    }
     /**
      * 二分搜索树的后序遍历
      */
