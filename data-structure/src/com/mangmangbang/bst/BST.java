@@ -168,15 +168,28 @@ public class BST<E extends Comparable<E>> {
 
     public void inOrderNR(){
 
-        Stack<Node> loopStack = new Stack<>();
+        Stack<Node> loopStack1 = new Stack<>();
+        Stack<Node> loopStack2 = new Stack<>();
 
-        Stack<Node> tempStack = new Stack<>();
+        loopStack1.push(root);
 
-        Node node = root;
-        while (node!=null){
+        while (!loopStack1.isEmpty()){
+            Node cur = loopStack1.pop();
+            loopStack2.push(cur);
 
+            if(cur.right!=null){
+                loopStack1.push(cur.right);
+            }
+            if(cur.left!=null){
+                loopStack1.push(cur.left);
+            }
         }
 
+        while (!loopStack2.isEmpty()){
+            System.out.println(loopStack2.pop().e);
+        }
+
+        System.out.println(loopStack2.size());
     }
     /**
      * 二分搜索树的后序遍历
