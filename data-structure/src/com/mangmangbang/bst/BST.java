@@ -240,6 +240,120 @@ public class BST<E extends Comparable<E>> {
             }
         }
     }
+
+    /**
+     * 寻找二分搜索树的最小元素
+     * @return
+     */
+    public E minimum(){
+        if(size==0){
+            throw new  IllegalArgumentException("BST is empty");
+        }
+
+        return minimum(root).e;
+    }
+
+    /**
+     * 返回以node为根的二分搜索树的最小值所在的节点
+     * @param node
+     * @return
+     */
+    public Node minimum(Node node){
+        if(node.left==null){
+            return node;
+        }
+
+        return minimum(node.left);
+    }
+
+    /**
+     * 寻找二分搜索树的最小元素（非递归）
+     * @return
+     */
+    public E minimumNR(){
+        if(size==0){
+            throw new  IllegalArgumentException("BST is empty");
+        }
+
+        Node node = root;
+        while (node.left!=null){
+            node = node.left;
+        }
+
+        return node.e;
+    }
+
+    /**
+     * 寻找二分搜索树的最大元素
+     * @return
+     */
+    public E maximum(){
+        if(size==0){
+            throw new  IllegalArgumentException("BST is empty");
+        }
+
+        return maximum(root).e;
+    }
+
+    /**
+     * 返回以node为根的二分搜索树的最大值所在的节点
+     * @param node
+     * @return
+     */
+    public Node maximum(Node node){
+        if(node.right==null){
+            return node;
+        }
+
+        return maximum(node.right);
+    }
+
+    /**
+     * 寻找二分搜索树的最大元素（非递归）
+     * @return
+     */
+    public E maximumNR(){
+        if(size==0){
+            throw new  IllegalArgumentException("BST is empty");
+        }
+
+        Node node = root;
+        while (node.right!=null){
+            node = node.right;
+        }
+
+        return node.e;
+    }
+
+    /**
+     * 从二分搜索树中删除最小值所在节点，返回最小值
+     * @return
+     */
+    public E removeMin(){
+        E ret = minimum();
+        removeMin(root);
+        return ret;
+    }
+
+    /**
+     * 删除掉以node为根的二分搜索树中的最小节点
+     * 返回删除节点后的新的二分搜索树的根
+     * @param node
+     * @return
+     */
+    private Node removeMin(Node node){
+        if(node.left==null){
+            //获取当前节点的右子树
+            Node rightNode = node.right;
+            node.right = null;
+            size --;
+            return rightNode;
+        }
+
+        node.left = removeMin(node.left);
+        return node;
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();

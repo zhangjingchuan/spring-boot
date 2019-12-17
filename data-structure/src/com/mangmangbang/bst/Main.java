@@ -23,7 +23,13 @@ public class Main {
 //        bst.inOrderNR();
 
 
-        bst.levelOrder();
+//        bst.levelOrder();
+
+        System.out.println(bst.maximum());
+
+        System.out.println();
+
+        System.out.println(bst.maximumNR());
     }
 
 }
