@@ -9,18 +9,21 @@ public class Main {
         }
 
 //        bst.preOrder();
-        System.out.println();
+//        System.out.println();
 
 //        System.out.println(bst);
  
 //        bst.preOrderNR();
-        bst.inOrder();
+//        bst.inOrder();
 //
-        System.out.println();
+//        System.out.println();
 
 //        bst.postOrder();
 
-        bst.inOrderNR();
+//        bst.inOrderNR();
+
+
+        bst.levelOrder();
     }
 
 }

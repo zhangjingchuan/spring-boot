@@ -3,6 +3,8 @@ package com.mangmangbang.bst;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import jdk.nashorn.internal.ir.WhileNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -168,28 +170,18 @@ public class BST<E extends Comparable<E>> {
 
     public void inOrderNR(){
 
-        Stack<Node> loopStack1 = new Stack<>();
-        Stack<Node> loopStack2 = new Stack<>();
-
-        loopStack1.push(root);
-
-        while (!loopStack1.isEmpty()){
-            Node cur = loopStack1.pop();
-            loopStack2.push(cur);
-
-            if(cur.right!=null){
-                loopStack1.push(cur.right);
+        Stack<Node> stack = new Stack<>();
+        Node nod = root;
+        while (!stack.isEmpty() || nod != null) {
+            while (nod != null) {
+                stack.push(nod);
+                nod = nod.left;
             }
-            if(cur.left!=null){
-                loopStack1.push(cur.left);
-            }
+            Node sNode = stack.pop();
+            System.out.println(sNode.e + " ");
+            nod = sNode.right;
         }
 
-        while (!loopStack2.isEmpty()){
-            System.out.println(loopStack2.pop().e);
-        }
-
-        System.out.println(loopStack2.size());
     }
     /**
      * 二分搜索树的后序遍历
@@ -208,6 +200,46 @@ public class BST<E extends Comparable<E>> {
         System.out.println(node.e);
     }
 
+    public void postOrderNR(){
+        Stack<Node> stack = new Stack<>();
+        Node nod = root;
+        Node pre = null;
+        while (!stack.isEmpty() || nod != null) {
+            while (nod != null) {
+                stack.push(nod);
+                nod = nod.left;
+            }
+            Node sNode = stack.peek();
+            if (sNode.right == null || pre == sNode.right) {
+                stack.pop();
+                pre = sNode;
+                System.out.print(sNode.e + " ");
+            } else {
+                nod = sNode.right;
+            }
+        }
+    }
+
+    /**
+     * 二分搜索树的层序遍历
+     */
+    public void levelOrder(){
+
+        Queue<Node> q = new LinkedList<>();
+
+        q.add(root);
+
+        while (!q.isEmpty()){
+            Node cur = q.remove();
+            System.out.println(cur.e);
+            if(cur.left!=null) {
+                q.add(cur.left);
+            }
+            if(cur.right!=null){
+                q.add(cur.right);
+            }
+        }
+    }
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
