@@ -1,4 +1,4 @@
-package com.youxuewen.eurekaclient;
+package com.youxuewen.productclient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class EurekaClientApplication {
+public class ProductClientApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EurekaClientApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ProductClientApplication.class, args);
+    }
 
 }
