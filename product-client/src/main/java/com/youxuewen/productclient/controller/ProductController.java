@@ -1,20 +1,65 @@
 package com.youxuewen.productclient.controller;
 
+import com.youxuewen.productclient.pojo.ProductCategory;
+import com.youxuewen.productclient.pojo.ProductInfo;
+import com.youxuewen.productclient.service.ProductCategoryService;
+import com.youxuewen.productclient.service.ProductInfoService;
+import com.youxuewen.productclient.vo.ProductInfoVo;
+import com.youxuewen.productclient.vo.ProductVo;
+import com.youxuewen.productclient.vo.ResultFormat;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
+ * 商品
  * created by zhangjingchuan on 2019/12/23
  */
 @RestController
 @RequestMapping("/product")
 public class ProductController {
 
-
+    @Resource
+    private ProductInfoService productInfoService;
+    @Resource
+    private ProductCategoryService productCategoryService;
 
     @GetMapping("/list")
-    public  void list(){
+    public ResultFormat list(){
+        //查询所有在架的商品
+        List<ProductInfo> productInfoList = this.productInfoService.findUpAll();
+        //获取类目type列表
+        List<Integer> categoryTypeList = productInfoList.stream().map(p -> p.getCategoryType()).collect(Collectors.toList());
+        //从数据库查询类目
+        List<ProductCategory> categoryList = this.productCategoryService.findByCategoryTypeIn(categoryTypeList);
 
+        //构造数据
+        List<ProductVo> productVoList = new ArrayList<>();
+        for(ProductCategory productCategory : categoryList){
+
+            List<ProductInfoVo> productInfoVoList = new ArrayList<>();
+            for(ProductInfo productInfo : productInfoList){
+                if(productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
+                    ProductInfoVo productInfoVo = ProductInfoVo.builder().build();
+                    BeanUtils.copyProperties(productInfo, productInfoVo);
+                    productInfoVoList.add(productInfoVo);
+                }
+            }
+            ProductVo vo = ProductVo.builder()
+                    .categoryName(productCategory.getCategoryName())
+                    .categoryType(productCategory.getCategoryType())
+                    .productInfoVoList(productInfoVoList).build();
+
+            productVoList.add(vo);
+        }
+
+
+        return ResultFormat.success(productVoList);
     }
 }

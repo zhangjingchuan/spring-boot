@@ -1,5 +1,6 @@
 package com.youxuewen.productclient.vo;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -9,8 +10,22 @@ import lombok.Data;
  */
 @Data
 public class ResultFormat {
+    public static Integer SUCCESS = 0;
 
     private Integer code;
     private String msg;
     private Object data;
+
+    public ResultFormat(){
+
+    }
+    public ResultFormat(Object data){
+        this.code = SUCCESS;
+        this.msg = "请求成功";
+        this.data = data;
+    }
+
+    public static ResultFormat success(Object data){
+        return new ResultFormat(data);
+    }
 }
