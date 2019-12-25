@@ -38,6 +38,6 @@ public class OrderDetail {
 
     private Date createTime;
 
-    private Date udpateTime;
+    private Date updateTime;
 
 }

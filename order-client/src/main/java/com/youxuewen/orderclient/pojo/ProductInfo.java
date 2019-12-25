@@ -1,4 +1,4 @@
-package com.youxuewen.productclient.pojo;
+package com.youxuewen.orderclient.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,7 +28,7 @@ public class ProductInfo {
 
     private BigDecimal productPrice;
 
-    private Integer productStock;
+    private String productStock;
 
     private String productDescription;
 

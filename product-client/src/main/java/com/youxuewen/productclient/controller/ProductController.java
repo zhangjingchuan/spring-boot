@@ -1,5 +1,6 @@
 package com.youxuewen.productclient.controller;
 
+import com.youxuewen.productclient.dto.CartDTO;
 import com.youxuewen.productclient.pojo.ProductCategory;
 import com.youxuewen.productclient.pojo.ProductInfo;
 import com.youxuewen.productclient.service.ProductCategoryService;
@@ -8,9 +9,7 @@ import com.youxuewen.productclient.vo.ProductInfoVo;
 import com.youxuewen.productclient.vo.ProductVo;
 import com.youxuewen.productclient.vo.ResultFormat;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -61,5 +60,26 @@ public class ProductController {
 
 
         return ResultFormat.success(productVoList);
+    }
+
+    /**
+     * 获取商品列表（给订单服务用）
+     * @param productIdList
+     * @return
+     */
+    @PostMapping("/listForOrder")
+    public List<ProductInfo> listForOrder(@RequestBody List<String> productIdList){
+
+        List<ProductInfo> list = this.productInfoService.findByProductIdIn(productIdList);
+        return list;
+    }
+
+    /**
+     * 删除购物车
+     * @param cartDTOList
+     */
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList){
+        this.productInfoService.decreaseStock(cartDTOList);
     }
 }
