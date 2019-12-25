@@ -24,6 +24,7 @@
         <module>spring-boot-netty</module>
         <module>wenxin</module>
         <module>lambda</module>
+        <module>product-common</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

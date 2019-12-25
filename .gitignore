@@ -18,3 +18,5 @@ spring-web-mvc/spring-web-mvc.iml
 spring-web-mvc/target/
 wenxin/target/
 wenxin/wenxin.iml
+src/main/resources/static/
+src/main/resources/templates/
