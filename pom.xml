@@ -25,6 +25,13 @@
         <module>wenxin</module>
         <module>lambda</module>
         <module>product-common</module>
+        <module>order</module>
+        <module>product</module>
+        <module>product-client</module>
+        <module>product-server</module>
+        <module>erueka</module>
+        <module>eureka-client</module>
+        <module>springboot-view</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
@@ -49,13 +56,13 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 
 </project>
