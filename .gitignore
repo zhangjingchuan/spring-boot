@@ -20,3 +20,7 @@ wenxin/target/
 wenxin/wenxin.iml
 src/main/resources/static/
 src/main/resources/templates/
+/product-common/target/
+/erueka/target/
+/order/target/
+/eureka-client/target/

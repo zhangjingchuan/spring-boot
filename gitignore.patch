@@ -1,0 +1,15 @@
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .gitignore	(revision 0e7fc22512af5fe76ffb119351192a0eb4732446)
++++ .gitignore	(date 1577606337380)
+@@ -20,3 +20,7 @@
+ wenxin/wenxin.iml
+ src/main/resources/static/
+ src/main/resources/templates/
++/product-common/target/
++/erueka/target/
++/order/target/
++/eureka-client/target/
