@@ -19,6 +19,6 @@ public class TestService implements ApplicationContextAware {
     }
 
     public String test(){
-        return applicationContext.getEnvironment().getProperty("key1");
+        return applicationContext.getEnvironment().getProperty("key3");
     }
 }
